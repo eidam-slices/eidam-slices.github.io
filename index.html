@@ -2,72 +2,83 @@
 <html lang="cs">
 <head>
   <meta charset="UTF-8">
-  <title>Živý motivační citát</title>
+  <title>Motivační citát</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
-      background: linear-gradient(to right, #00c6ff, #0072ff);
-      color: white;
-      text-align: center;
-      padding: 50px;
+      margin: 0;
+      height: 100vh;
+      background: url('https://images.unsplash.com/photo-1503264116251-35a269479413?auto=format&fit=crop&w=1950&q=80') no-repeat center center fixed;
+      background-size: cover;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #fff;
     }
 
-    #quote-box {
+    .card {
       background: rgba(255, 255, 255, 0.1);
-      padding: 30px;
-      border-radius: 15px;
-      margin: 20px auto;
+      backdrop-filter: blur(10px);
+      border-radius: 20px;
+      padding: 40px;
       max-width: 600px;
-      font-size: 1.5em;
-      transition: all 0.3s ease;
+      width: 90%;
+      text-align: center;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+      transition: all 0.3s ease-in-out;
     }
 
-    button {
-      background-color: white;
-      color: #0072ff;
-      border: none;
-      padding: 15px 30px;
-      border-radius: 30px;
-      font-size: 1em;
-      cursor: pointer;
-      transition: all 0.2s ease;
-    }
-
-    button:hover {
-      background-color: #f0f0f0;
+    .quote {
+      font-size: 1.6em;
+      margin-bottom: 20px;
+      line-height: 1.4;
     }
 
     .author {
-      margin-top: 10px;
-      font-size: 0.9em;
+      font-size: 1em;
+      font-style: italic;
       color: #e0e0e0;
+    }
+
+    button {
+      margin-top: 30px;
+      padding: 12px 25px;
+      font-size: 1em;
+      border: none;
+      border-radius: 30px;
+      background-color: rgba(255, 255, 255, 0.8);
+      color: #333;
+      cursor: pointer;
+      transition: background-color 0.2s ease;
+    }
+
+    button:hover {
+      background-color: #fff;
     }
   </style>
 </head>
 <body>
-  <h1>Živý motivační citát</h1>
-  <div id="quote-box">Klikni na tlačítko pro citát</div>
-  <div class="author" id="quote-author"></div>
-  <button onclick="generateQuote()">Zobrazit citát</button>
+  <div class="card">
+    <div class="quote" id="quote-box">Klikni na tlačítko pro náhodný citát.</div>
+    <div class="author" id="quote-author"></div>
+    <button onclick="generateQuote()">🎲 Nový citát</button>
+  </div>
 
   <script>
     async function generateQuote() {
       const quoteBox = document.getElementById("quote-box");
       const authorBox = document.getElementById("quote-author");
 
-      quoteBox.textContent = "Načítání...";
+      quoteBox.textContent = "Načítám citát...";
       authorBox.textContent = "";
 
       try {
-        const response = await fetch("https://zenquotes.io/api/random");
+        const response = await fetch("https://api.quotable.io/random");
         const data = await response.json();
-        const quote = data[0].q;
-        const author = data[0].a;
-
-        quoteBox.textContent = `"${quote}"`;
-        authorBox.textContent = `– ${author}`;
+        quoteBox.textContent = `"${data.content}"`;
+        authorBox.textContent = `– ${data.author}`;
       } catch (error) {
-        quoteBox.textContent = "Nepodařilo se načíst citát.";
+        quoteBox.textContent = "Chyba při načítání citátu.";
         console.error(error);
       }
     }
