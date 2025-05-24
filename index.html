@@ -2,7 +2,7 @@
 <html lang="cs">
 <head>
   <meta charset="UTF-8">
-  <title>Náhodný motivační citát</title>
+  <title>Živý motivační citát</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -36,25 +36,40 @@
     button:hover {
       background-color: #f0f0f0;
     }
+
+    .author {
+      margin-top: 10px;
+      font-size: 0.9em;
+      color: #e0e0e0;
+    }
   </style>
 </head>
 <body>
-  <h1>Tvůj náhodný motivační citát</h1>
+  <h1>Živý motivační citát</h1>
   <div id="quote-box">Klikni na tlačítko pro citát</div>
+  <div class="author" id="quote-author"></div>
   <button onclick="generateQuote()">Zobrazit citát</button>
 
   <script>
-    const quotes = [
-      "Nezáleží na tom, jak pomalu jdeš, dokud se nezastavíš.",
-      "Neúspěch je jen příležitost začít znovu, tentokrát chytřeji.",
-      "Síla nepochází z fyzických schopností, ale z nezlomné vůle.",
-      "Každý den je nová příležitost začít znovu.",
-      "Nevzdávej to, začátky jsou vždy nejtěžší."
-    ];
+    async function generateQuote() {
+      const quoteBox = document.getElementById("quote-box");
+      const authorBox = document.getElementById("quote-author");
 
-    function generateQuote() {
-      const randomIndex = Math.floor(Math.random() * quotes.length);
-      document.getElementById("quote-box").textContent = quotes[randomIndex];
+      quoteBox.textContent = "Načítání...";
+      authorBox.textContent = "";
+
+      try {
+        const response = await fetch("https://zenquotes.io/api/random");
+        const data = await response.json();
+        const quote = data[0].q;
+        const author = data[0].a;
+
+        quoteBox.textContent = `"${quote}"`;
+        authorBox.textContent = `– ${author}`;
+      } catch (error) {
+        quoteBox.textContent = "Nepodařilo se načíst citát.";
+        console.error(error);
+      }
     }
   </script>
 </body>
