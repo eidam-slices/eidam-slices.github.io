@@ -2,13 +2,60 @@
 <html lang="cs">
 <head>
   <meta charset="UTF-8">
-  <title>Eidam</title>
+  <title>Náhodný motivační citát</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to right, #00c6ff, #0072ff);
+      color: white;
+      text-align: center;
+      padding: 50px;
+    }
+
+    #quote-box {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 30px;
+      border-radius: 15px;
+      margin: 20px auto;
+      max-width: 600px;
+      font-size: 1.5em;
+      transition: all 0.3s ease;
+    }
+
+    button {
+      background-color: white;
+      color: #0072ff;
+      border: none;
+      padding: 15px 30px;
+      border-radius: 30px;
+      font-size: 1em;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    button:hover {
+      background-color: #f0f0f0;
+    }
+  </style>
 </head>
 <body>
-  <h1>Taso Pokus!</h1>
-  <p>
-    Tohle je zkušební stránka na GitHubu<br>
-    Tady jsem dal line break.
-  </p>
+  <h1>Tvůj náhodný motivační citát</h1>
+  <div id="quote-box">Klikni na tlačítko pro citát</div>
+  <button onclick="generateQuote()">Zobrazit citát</button>
+
+  <script>
+    const quotes = [
+      "Nezáleží na tom, jak pomalu jdeš, dokud se nezastavíš.",
+      "Neúspěch je jen příležitost začít znovu, tentokrát chytřeji.",
+      "Síla nepochází z fyzických schopností, ale z nezlomné vůle.",
+      "Každý den je nová příležitost začít znovu.",
+      "Nevzdávej to, začátky jsou vždy nejtěžší."
+    ];
+
+    function generateQuote() {
+      const randomIndex = Math.floor(Math.random() * quotes.length);
+      document.getElementById("quote-box").textContent = quotes[randomIndex];
+    }
+  </script>
 </body>
 </html>
