@@ -26,9 +26,12 @@
       margin-top: 10px;
     }
 
-    img {
+    .images img {
       width: 250px;
-      height: auto;
+      height: 250px;
+      object-fit: contain; /* nebo "cover", podle toho, co chceš */
+      border: 1px solid #ccc; /* volitelné, pomáhá vidět okraj */
+      background-color: white; /* volitelné, pokud má obrázek průhlednost */
     }
   </style>
 </head>
