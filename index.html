@@ -55,14 +55,14 @@
       ];
   
       // Rok hardcoded (pro 2025)
-      const rokSlovne = "dvatisíce dvacet pět";
+      const rokSlovne = "dva tisíce dvacet pět";
   
       const dnes = new Date();
       const den = dnes.getDate();
       const mesic = dnes.getMonth() + 1;
-  
-      const slovniDatum = `${dny[den]} ${mesiceCislem[mesic]} ${rokSlovne}`;
-      document.getElementById("slovni-datum").textContent = slovniDatum;
+      
+      const slovniDatum = `${dny[den]} ${mesiceCislem[mesic]}<br>${rokSlovne}`;
+      document.getElementById("slovni-datum").innerHTML = slovniDatum;
     </script>
     <h3>EIDAM - 45 %</h3>
     <h2>
