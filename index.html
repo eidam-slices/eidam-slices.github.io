@@ -35,8 +35,40 @@
 <body>
   <div class="container">
     <h1>Adam R.</h1>
-    <h2>EIDAM - 30 %</h2>
-    <p>Gouda je 48%.</p>
+    <p id="slovni-datum"></p>
+    <script>
+      const dny = [
+        "", "prvního", "druhého", "třetího", "čtvrtého", "pátého",
+        "šestého", "sedmého", "osmého", "devátého", "desátého",
+        "jedenáctého", "dvanáctého", "třináctého", "čtrnáctého", "patnáctého",
+        "šestnáctého", "sedmnáctého", "osmnáctého", "devatenáctého", "dvacátého",
+        "dvacátého prvního", "dvacátého druhého", "dvacátého třetího",
+        "dvacátého čtvrtého", "dvacátého pátého", "dvacátého šestého",
+        "dvacátého sedmého", "dvacátého osmého", "dvacátého devátého",
+        "třicátého", "třicátého prvního"
+      ];
+  
+      // Měsíc převedeme číslem na pořadové (šestého, sedmého...)
+      const mesiceCislem = [
+        "", "prvního", "druhého", "třetího", "čtvrtého", "pátého",
+        "šestého", "sedmého", "osmého", "devátého", "desátého", "jedenáctého", "dvanáctého"
+      ];
+  
+      // Rok hardcoded (pro 2025)
+      const rokSlovne = "dvatisíce dvacátého pátého";
+  
+      const dnes = new Date();
+      const den = dnes.getDate();
+      const mesic = dnes.getMonth() + 1;
+  
+      const slovniDatum = `${dny[den]} ${mesiceCislem[mesic]} ${rokSlovne}`;
+      document.getElementById("slovni-datum").textContent = slovniDatum;
+    </script>
+    <h3>EIDAM - 30 %</h3>
+    <h2>
+      Gouda - 48%.
+      (doporučuju)
+    </h2>
     <div class="images">
       <img src="https://static.albert.cz/medias/sys_master/h34/haa/9008654286878.jpg" alt="Eidam">
       <img src="https://static.albert.cz/medias/sys_master/hac/h62/9009347100702.jpg" alt="Gouda">
